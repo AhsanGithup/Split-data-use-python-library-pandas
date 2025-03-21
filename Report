@@ -1,0 +1,55 @@
+### **Report**
+
+#### **Objective**:
+The purpose of this report is to document the data cleaning process performed on the dataset containing the columns **Id**, **CreationDate**, and **Tags**. The goal is to ensure the dataset is accurate, consistent, and ready for analysis or further processing.
+
+---
+
+#### **Dataset Overview**:
+The dataset consists of the following columns:
+1. **Id**: A unique identifier for each record.
+2. **CreationDate**: The date and time when the record was created.
+3. **Tags**: Keywords or labels associated with the record.
+
+---
+
+#### **Data Cleaning Steps**:
+
+1. **Id Column**:
+   - **Issue**: Duplicate or missing `Id` values can lead to incorrect data analysis.
+   - **Actions Taken**:
+     - Checked for duplicate `Id` values using `df.duplicated('Id')`. Duplicates were removed to ensure each record has a unique identifier.
+     - Verified for missing values using `df['Id'].isnull().sum()`. Missing values were either filled or the corresponding rows were dropped, depending on the use case.
+     - Ensured the `Id` column is of integer type using `df['Id'].astype(int)`.
+   - **Outcome**: The `Id` column is now clean, with no duplicates or missing values, and is stored as an integer.
+
+2. **CreationDate Column**:
+   - **Issue**: Incorrect or missing date formats can cause errors in time-based analysis.
+   - **Actions Taken**:
+     - Converted the `CreationDate` column to a proper datetime format using `pd.to_datetime(df['CreationDate'])`.
+     - Identified and handled missing values using `df['CreationDate'].isnull().sum()`. Missing dates were either filled with a default value or the corresponding rows were dropped.
+     - Validated the date range to ensure no future dates are present. Rows with future dates were removed.
+   - **Outcome**: The `CreationDate` column is now in a consistent datetime format, with no missing or invalid dates.
+
+3. **Tags Column**:
+   - **Issue**: Tags often contain inconsistent formatting, special characters, or missing values, which can hinder analysis.
+   - **Actions Taken**:
+     - Removed unwanted characters (e.g., `<`, `>`, and extra spaces) using string operations like `str.replace()`.
+     - Split tags into lists for easier analysis and processing.
+     - Handled missing or empty tags by replacing them with a placeholder (e.g., "No Tags").
+   - **Outcome**: The `Tags` column is now clean, standardized, and ready for further analysis.
+
+---
+
+#### **Summary of Findings**:
+- **Id Column**: Duplicates and missing values were resolved, and the column was standardized to integer type.
+- **CreationDate Column**: Dates were converted to a consistent format, and invalid or missing dates were handled.
+- **Tags Column**: Tags were cleaned, standardized, and missing values were addressed.
+
+
+---
+
+#### **Conclusion**:
+The data cleaning process has successfully addressed issues in the **Id**, **CreationDate**, and **Tags** columns. The dataset is now clean, consistent, and ready for analysis or further processing.
+
+---
